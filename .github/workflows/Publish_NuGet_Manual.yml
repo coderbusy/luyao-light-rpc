@@ -9,17 +9,14 @@
 #
 #     - To trigger manual generation invoke:
 #
-#         nuke --generate-configuration GitHubActions_Publish_NuGet --host GitHubActions
+#         nuke --generate-configuration GitHubActions_Publish_NuGet_Manual --host GitHubActions
 #
 # </auto-generated>
 # ------------------------------------------------------------------------------
 
-name: Publish_NuGet
+name: Publish_NuGet_Manual
 
-on:
-  push:
-    tags:
-      - 'v*'
+on: [workflow_dispatch]
 
 jobs:
   windows-2022:

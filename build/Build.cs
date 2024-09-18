@@ -20,6 +20,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
     "continuous",
     GitHubActionsImage.WindowsServer2022,
     On = new[] { GitHubActionsTrigger.Push },
+    FetchDepth = 0,
     InvokedTargets = new[] { nameof(Compile) })]
 partial class Build : NukeBuild
 {
