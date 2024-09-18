@@ -1,18 +1,13 @@
 ﻿using Nuke.Common;
 using Nuke.Common.CI.GitHubActions;
-using Nuke.Common.IO;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.GitVersion;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-[GitHubActions("Publish NuGet", 
+[GitHubActions("Publish NuGet",
     GitHubActionsImage.WindowsServer2022,
-    On = new[] { GitHubActionsTrigger.WorkflowDispatch },
-    ImportSecrets = new[] { nameof(NuGetApiKey) 
+    OnPushTags = new[] { "v*" },
+    PublishArtifacts = true,
+    ImportSecrets = new[] { nameof(NuGetApiKey)
 })]
 partial class Build
 {
