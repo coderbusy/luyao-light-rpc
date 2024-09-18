@@ -36,7 +36,7 @@ partial class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    [GitVersion] readonly GitVersion GitVersion;
+    [GitVersion(NoFetch = true)] readonly GitVersion GitVersion;
     GitHubActions GitHubActions => GitHubActions.Instance;
     Target Clean => _ => _
         .Before(Restore)

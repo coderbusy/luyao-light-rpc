@@ -16,7 +16,10 @@
 
 name: Publish_NuGet
 
-on: [workflow_dispatch]
+on:
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   windows-2022:
@@ -24,6 +27,8 @@ jobs:
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: 'Cache: .nuke/temp, ~/.nuget/packages'
         uses: actions/cache@v4
         with:
