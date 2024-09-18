@@ -53,6 +53,7 @@ partial class Build : NukeBuild
             DotNetBuild(dotNetBuildSettings => dotNetBuildSettings
             .SetProjectFile(Solution)
             .SetConfiguration(Configuration)
+            .SetVersion(GitVersion.FullSemVer)
             .EnableNoRestore());
         });
 }
