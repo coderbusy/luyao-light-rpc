@@ -30,6 +30,7 @@ jobs:
       - name: 'Cache: .nuke/temp, ~/.nuget/packages'
         uses: actions/cache@v4
         with:
+          fetch-depth: 0
           path: |
             .nuke/temp
             ~/.nuget/packages
