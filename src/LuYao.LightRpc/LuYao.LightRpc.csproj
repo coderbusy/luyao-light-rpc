@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net45;net461;netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='net45' or '$(TargetFramework)'=='net461'">
+		<Reference Include="System.Net.Http" />
+		<Reference Include="System.Web" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<InternalsVisibleTo Include="$(AssemblyName).UnitTests" />
+	</ItemGroup>
+</Project>

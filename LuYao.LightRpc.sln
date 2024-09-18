@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{52B999D2-BA6F-46D9-AAEB-895D6756C0C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuYao.LightRpc", "src\LuYao.LightRpc\LuYao.LightRpc.csproj", "{1029D930-4556-4FE6-BA64-F9E9F9B87A55}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E65A796D-A9BE-4C66-9A17-C9A8E2BD8347}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{60037AE3-ACEB-4609-94C1-39B22A64EF73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuYao.LightRpc.UnitTests", "tests\LuYao.LightRpc.UnitTests\LuYao.LightRpc.UnitTests.csproj", "{153BF677-B274-46EE-B45F-8AAD1AD0ADFE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuYao.LightRpc.Newtonsoft", "src\LuYao.LightRpc.Newtonsoft\LuYao.LightRpc.Newtonsoft.csproj", "{F593163C-1AAB-4A15-9C55-F8DE467B2146}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuYao.LightRpc.SourceGenerators", "src\LuYao.LightRpc.SourceGenerators\LuYao.LightRpc.SourceGenerators.csproj", "{01643FC8-921C-4460-9E46-0BDAFCA420E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52B999D2-BA6F-46D9-AAEB-895D6756C0C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52B999D2-BA6F-46D9-AAEB-895D6756C0C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1029D930-4556-4FE6-BA64-F9E9F9B87A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1029D930-4556-4FE6-BA64-F9E9F9B87A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1029D930-4556-4FE6-BA64-F9E9F9B87A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1029D930-4556-4FE6-BA64-F9E9F9B87A55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{153BF677-B274-46EE-B45F-8AAD1AD0ADFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{153BF677-B274-46EE-B45F-8AAD1AD0ADFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{153BF677-B274-46EE-B45F-8AAD1AD0ADFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{153BF677-B274-46EE-B45F-8AAD1AD0ADFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F593163C-1AAB-4A15-9C55-F8DE467B2146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F593163C-1AAB-4A15-9C55-F8DE467B2146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F593163C-1AAB-4A15-9C55-F8DE467B2146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F593163C-1AAB-4A15-9C55-F8DE467B2146}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01643FC8-921C-4460-9E46-0BDAFCA420E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01643FC8-921C-4460-9E46-0BDAFCA420E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01643FC8-921C-4460-9E46-0BDAFCA420E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01643FC8-921C-4460-9E46-0BDAFCA420E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1029D930-4556-4FE6-BA64-F9E9F9B87A55} = {E65A796D-A9BE-4C66-9A17-C9A8E2BD8347}
+		{153BF677-B274-46EE-B45F-8AAD1AD0ADFE} = {60037AE3-ACEB-4609-94C1-39B22A64EF73}
+		{F593163C-1AAB-4A15-9C55-F8DE467B2146} = {E65A796D-A9BE-4C66-9A17-C9A8E2BD8347}
+		{01643FC8-921C-4460-9E46-0BDAFCA420E5} = {E65A796D-A9BE-4C66-9A17-C9A8E2BD8347}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA69B1C3-F6B9-4AF9-859B-D680E03B79F2}
+	EndGlobalSection
+EndGlobal
