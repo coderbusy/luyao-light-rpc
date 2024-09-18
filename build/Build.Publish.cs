@@ -29,7 +29,7 @@ partial class Build
                 .SetTreatWarningsAsErrors(true)
                 .EnableNoBuild()
                 .SetConfiguration(Configuration)
-                .SetVersion(GitVersion.NuGetVersion)
+                .SetVersion(GitVersion.MajorMinorPatch)
                 .SetOutputDirectory(PackageDirectory));
         });
 
