@@ -21,7 +21,7 @@ using Nuke.Common.Tools.GitVersion;
 )]
 partial class Build
 {
-    [Parameter("Api key to use when pushing the package"), Secret]
+    [Parameter("Api key to use when pushing the package")]
     readonly string NuGetApiKey = string.Empty;
 
     [Parameter("NuGet artifact target uri - Defaults to https://api.nuget.org/v3/index.json")]
