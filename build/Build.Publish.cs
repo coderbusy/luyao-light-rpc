@@ -7,8 +7,18 @@ using Nuke.Common.Tools.GitVersion;
     GitHubActionsImage.WindowsServer2022,
     OnPushTags = new[] { "v*" },
     PublishArtifacts = true,
-    ImportSecrets = new[] { nameof(NuGetApiKey)
-})]
+    ImportSecrets = new[] { nameof(NuGetApiKey) },
+    InvokedTargets = new[] { nameof(Push) },
+    FetchDepth = 0
+)]
+[GitHubActions("Publish NuGet Manual",
+    GitHubActionsImage.WindowsServer2022,
+    On = new[] { GitHubActionsTrigger.WorkflowDispatch },
+    PublishArtifacts = true,
+    ImportSecrets = new[] { nameof(NuGetApiKey) },
+    InvokedTargets = new[] { nameof(Push) },
+    FetchDepth = 0
+)]
 partial class Build
 {
     [Parameter("Api key to use when pushing the package"), Secret]
