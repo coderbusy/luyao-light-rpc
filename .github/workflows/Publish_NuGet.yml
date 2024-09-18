@@ -16,7 +16,10 @@
 
 name: Publish_NuGet
 
-on: [workflow_dispatch]
+on:
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   windows-2022:
