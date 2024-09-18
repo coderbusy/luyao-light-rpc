@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 partial class Build
 {
     [Parameter("Api key to use when pushing the package"), Secret]
-    readonly string NuGetApiKey;
+    readonly string NuGetApiKey = string.Empty;
 
     [Parameter("NuGet artifact target uri - Defaults to https://api.nuget.org/v3/index.json")]
     readonly string PackageSource = "https://api.nuget.org/v3/index.json";
 
-    [GitVersion(NoFetch = true, Framework = "net8.0")] readonly GitVersion GitVersion;
+    [GitVersion] readonly GitVersion GitVersion;
 
     Target Pack => _ => _
         .DependsOn(Clean, Compile)
@@ -37,13 +37,13 @@ partial class Build
     Target Push => _ => _
         .Consumes(Pack)
         .DependsOn(Pack)
-        .Requires(() => NugetApiKey)
+        .Requires(() => NuGetApiKey)
         .Requires(() => PackageSource)
         .Executes(() =>
         {
             DotNetTasks.DotNetNuGetPush(s => s
                 .SetTargetPath(PackageDirectory / $"*.nupkg")
-                .SetApiKey(NugetApiKey)
+                .SetApiKey(NuGetApiKey)
                 .SetSource(PackageSource));
         });
 }

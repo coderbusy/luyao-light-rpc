@@ -50,6 +50,7 @@
         "Clean",
         "Compile",
         "Pack",
+        "Push",
         "Restore"
       ]
     },

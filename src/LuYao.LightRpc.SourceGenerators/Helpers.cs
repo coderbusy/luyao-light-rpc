@@ -13,7 +13,7 @@ internal static class Helpers
 
         // Get the containing syntax node for the type declaration
         // (could be a nested type, for example)
-        SyntaxNode? potentialNamespaceParent = syntax.Parent;
+        SyntaxNode potentialNamespaceParent = syntax.Parent;
 
         // Keep moving "out" of nested classes etc until we get to a namespace
         // or until we run out of parents
