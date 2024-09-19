@@ -21,6 +21,7 @@ public class ControllerDescriptorRender
         sb.AppendLine("using System;");
         sb.AppendLine("using System.Collections.Generic;");
         sb.AppendLine("using System.Threading.Tasks;");
+        sb.AppendLine("using LuYao.LightRpc;");
         sb.AppendLine("using LuYao.LightRpc.Attributes;");
         sb.AppendLine("using LuYao.LightRpc.Descriptors;");
         sb.AppendLine();
