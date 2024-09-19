@@ -22,7 +22,7 @@ public class Handler
         string data = await req.ReadAsStringAsync() ?? string.Empty;
         var response = req.CreateResponse();
         response.Headers.Add("Content-Type", "application/json");
-        var result = await _mainServer.Invoke(action, data);
+        var result = await _mainServer.InvokeAsync(action, data);
         response.StatusCode = System.Net.HttpStatusCode.OK;
         if (result != null)
         {
