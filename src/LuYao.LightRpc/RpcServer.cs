@@ -38,7 +38,7 @@ public class RpcServer<TData>
         }
     }
 
-    public async Task<RpcResult> Invoke(string action, TData input)
+    public async Task<RpcResult> InvokeAsync(string action, TData input)
     {
         if (action == null) throw new ArgumentNullException(nameof(action));
         var result = new RpcResult
