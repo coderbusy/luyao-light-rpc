@@ -11,8 +11,7 @@
     },
     "NuGetApiKey": {
       "type": "string",
-      "description": "Api key to use when pushing the package",
-      "default": "Secrets must be entered via 'nuke :secrets [profile]'"
+      "description": "Api key to use when pushing the package"
     },
     "PackageSource": {
       "type": "string",
