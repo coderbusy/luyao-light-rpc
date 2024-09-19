@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuYao.LightRpc.Demo", "demo\LuYao.LightRpc.Demo\LuYao.LightRpc.Demo.csproj", "{FC06BAE2-28EA-47AA-B688-B065A461CC60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "functions", "functions", "{8ED26275-E307-4D36-875E-EC09D652A629}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuYao.LightRpc.Demo.Functions.InAzure", "demo\fc\LuYao.LightRpc.Demo.Functions.InAzure\LuYao.LightRpc.Demo.Functions.InAzure.csproj", "{BEC53184-0817-4915-A2F5-4F2C62754ABB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuYao.LightRpc.Demo.Functions.InAliyun", "demo\fc\LuYao.LightRpc.Demo.Functions.InAliyun\LuYao.LightRpc.Demo.Functions.InAliyun.csproj", "{858FB197-CC4C-4A4A-BA3C-11186101797F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuYao.LightRpc.Demo.Client", "demo\LuYao.LightRpc.Demo.Client\LuYao.LightRpc.Demo.Client.csproj", "{7D193906-C35B-4E75-8270-66A37498E85A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuYao.LightRpc.Demo.MinimalApi", "demo\LuYao.LightRpc.Demo.MinimalApi\LuYao.LightRpc.Demo.MinimalApi.csproj", "{59B320CC-49D5-4AA9-9D8C-17528C0A155A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC06BAE2-28EA-47AA-B688-B065A461CC60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC06BAE2-28EA-47AA-B688-B065A461CC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC06BAE2-28EA-47AA-B688-B065A461CC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC06BAE2-28EA-47AA-B688-B065A461CC60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEC53184-0817-4915-A2F5-4F2C62754ABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEC53184-0817-4915-A2F5-4F2C62754ABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEC53184-0817-4915-A2F5-4F2C62754ABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEC53184-0817-4915-A2F5-4F2C62754ABB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{858FB197-CC4C-4A4A-BA3C-11186101797F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{858FB197-CC4C-4A4A-BA3C-11186101797F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{858FB197-CC4C-4A4A-BA3C-11186101797F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{858FB197-CC4C-4A4A-BA3C-11186101797F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D193906-C35B-4E75-8270-66A37498E85A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D193906-C35B-4E75-8270-66A37498E85A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D193906-C35B-4E75-8270-66A37498E85A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D193906-C35B-4E75-8270-66A37498E85A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59B320CC-49D5-4AA9-9D8C-17528C0A155A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59B320CC-49D5-4AA9-9D8C-17528C0A155A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59B320CC-49D5-4AA9-9D8C-17528C0A155A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59B320CC-49D5-4AA9-9D8C-17528C0A155A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BEC53184-0817-4915-A2F5-4F2C62754ABB} = {8ED26275-E307-4D36-875E-EC09D652A629}
+		{858FB197-CC4C-4A4A-BA3C-11186101797F} = {8ED26275-E307-4D36-875E-EC09D652A629}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3D869020-D838-4F7B-9CC3-A537443D7B65}
+	EndGlobalSection
+EndGlobal
