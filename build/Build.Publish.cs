@@ -3,14 +3,6 @@ using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.GitVersion;
 
-[GitHubActions("Publish NuGet",
-    GitHubActionsImage.WindowsServer2022,
-    OnPushTags = new[] { "v*" },
-    PublishArtifacts = true,
-    ImportSecrets = new[] { nameof(NuGetApiKey) },
-    InvokedTargets = new[] { nameof(Push) },
-    FetchDepth = 0
-)]
 [GitHubActions("Publish NuGet Manual",
     GitHubActionsImage.WindowsServer2022,
     On = new[] { GitHubActionsTrigger.WorkflowDispatch },
@@ -40,7 +32,6 @@ partial class Build
                 .SetVersion(GitVersion.FullSemVer)
                 .SetOutputDirectory(PackageDirectory));
         });
-
 
     Target Push => _ => _
         .Consumes(Pack)
