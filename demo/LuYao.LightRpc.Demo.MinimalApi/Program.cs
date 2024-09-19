@@ -22,7 +22,7 @@ app.Map("/", async (
     {
         data = await reader.ReadToEndAsync();
     }
-    var result = await server.Invoke(action, data);
+    var result = await server.InvokeAsync(action, data);
     var ret = new RpcHttpResult(result);
     return ret;
 });

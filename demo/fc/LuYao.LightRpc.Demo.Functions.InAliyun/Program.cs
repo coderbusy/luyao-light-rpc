@@ -27,7 +27,7 @@ app.Map("/", async (
 {
     if (action is null) action = string.Empty;
     string data = body is not null ? body.ToString() : string.Empty;
-    var result = await server.Invoke(action, data);
+    var result = await server.InvokeAsync(action, data);
     var ret = new RpcHttpResult(result);
     return ret;
 });
