@@ -3,13 +3,10 @@ using LuYao.LightRpc.Renders.BuildControllerDescriptor;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
-using System;
 using System.Collections.Immutable;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Xml.Serialization;
 
 namespace LuYao.LightRpc;
 
@@ -60,7 +57,7 @@ public class ControllerDescriptorGenerator : IIncrementalGenerator
                 Namespace = ns,
             };
 
-            BuildModel(item, semanticModel, model);
+            BuildModel(context, item, semanticModel, model);
 
             var render = new ControllerDescriptorRender(model);
             var code = render.Render();
@@ -70,7 +67,7 @@ public class ControllerDescriptorGenerator : IIncrementalGenerator
         }
     }
 
-    private static void BuildModel((ClassDeclarationSyntax Syntax, AttributeData Attr) item, SemanticModel semanticModel, ControllerModel model)
+    private static void BuildModel(SourceProductionContext context, (ClassDeclarationSyntax Syntax, AttributeData Attr) item, SemanticModel semanticModel, ControllerModel model)
     {
         foreach (var n in item.Attr.NamedArguments)
         {
@@ -91,16 +88,16 @@ public class ControllerDescriptorGenerator : IIncrementalGenerator
             foreach (var m in methods)
             {
                 var methodSymbol = semanticModel.GetDeclaredSymbol(m) as IMethodSymbol;
-                if (IsIgnore(m, methodSymbol)) continue;
+                if (IsIgnore(methodSymbol)) continue;
                 var action = new ActionModel
                 {
                     Name = methodSymbol.Name,
                     ReturnsVoid = methodSymbol.ReturnsVoid,
                     HasReturnValue = !methodSymbol.ReturnsVoid
                 };
+                model.Actions.Add(action);
                 // 获取方法的返回类型
                 var returnType = methodSymbol.ReturnType;
-
                 // 判断返回类型是否是 Task 或 Task<>
                 bool returnsTask = returnType.Name == "Task" && (returnType.ContainingNamespace.ToString() == "System.Threading.Tasks");
 
@@ -142,10 +139,10 @@ public class ControllerDescriptorGenerator : IIncrementalGenerator
                     action.HasReturnValue = returnsTaskWithResult || customAwaitableReturnsValue;
                 }
 
-                model.Actions.Add(action);
-                var paras = m.DescendantNodes().OfType<ParameterSyntax>().ToList();
+                var paras = m.ParameterList.Parameters;
                 foreach (var p in paras)
                 {
+                    if (p.Type is null) continue;
                     var typeInfo = semanticModel.GetTypeInfo(p.Type);
                     var ap = new ActionParameterModel
                     {
@@ -158,7 +155,7 @@ public class ControllerDescriptorGenerator : IIncrementalGenerator
         }
     }
 
-    private static bool IsIgnore(MethodDeclarationSyntax m, IMethodSymbol methodSymbol)
+    private static bool IsIgnore(IMethodSymbol methodSymbol)
     {
         if (methodSymbol is null) return true;
         var accessibility = methodSymbol.DeclaredAccessibility;
