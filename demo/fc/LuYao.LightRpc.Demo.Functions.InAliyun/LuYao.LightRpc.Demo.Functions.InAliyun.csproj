@@ -1,13 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\LuYao.LightRpc.Demo\LuYao.LightRpc.Demo.csproj" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<ProjectReference Include="..\..\LuYao.LightRpc.Demo\LuYao.LightRpc.Demo.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="LuYao.LightRpc.Newtonsoft" Version="1.1.0" />
+	</ItemGroup>
 </Project>

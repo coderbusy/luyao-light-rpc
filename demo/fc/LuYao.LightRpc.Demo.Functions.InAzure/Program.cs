@@ -1,4 +1,5 @@
 using LuYao.LightRpc.Demo;
+using LuYao.LightRpc.Demo.Functions.InAzure;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace LuYao.LightRpc.Demo;
 
-public class MainServer : RpcServer<String>
+public class MainServer<T> : RpcServer<T>
 {
-    public MainServer() : base(new LuYao.LightRpc.NewtonsoftDataConverter())
+    public MainServer(IDataConverter<T> dataConverter) : base(dataConverter)
     {
         this.Register<TestController>();
     }
