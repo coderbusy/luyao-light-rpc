@@ -50,7 +50,7 @@ public class RpcServer<TData>
             result.Code = RpcResultCode.NotFound;
             return result;
         }
-        var parameters = this.DataConverter.Parse(input);
+        var parameters = this.DataConverter.Parse(input) ?? new SortedDictionary<string, object>();
         var context = new InvokeContext(this.DataConverter, parameters);
         try
         {
