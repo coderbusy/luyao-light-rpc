@@ -21,7 +21,7 @@ public class NewtonsoftDataConverter : IDataConverter<String>
         return dict;
     }
 
-    public TResult? Deserialize<TResult>(string? data)
+    public TResult Deserialize<TResult>(string? data)
     {
         return JsonConvert.DeserializeObject<TResult>(data ?? string.Empty);
     }

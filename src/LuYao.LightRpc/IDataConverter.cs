@@ -10,6 +10,6 @@ public interface IDataConverter
 public interface IDataConverter<T> : IDataConverter
 {
     T Serialize(object? data);
-    TResult? Deserialize<TResult>(T? data);
-    IDictionary<string, object> Parse(T data);
+    TResult Deserialize<TResult>(T? data);
+    IDictionary<string, object>? Parse(T data);
 }
