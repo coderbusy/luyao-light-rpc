@@ -8,6 +8,8 @@ public abstract class RpcClient
     public abstract IDataPackage CreateDataPackage();
     public abstract Task<TResult> InvokeAsync<TResult>(String action, IDataPackage package);
     public abstract Task InvokeAsync(String action, IDataPackage package);
+    public abstract TResult Invoke<TResult>(String action, IDataPackage package);
+    public abstract void Invoke(String action, IDataPackage package);
 }
 
 public class RpcClient<TData> : RpcClient
@@ -21,6 +23,22 @@ public class RpcClient<TData> : RpcClient
     public IRpcTunnel<TData> Tunnel { get; }
 
     public override IDataPackage CreateDataPackage() => this.DataConverter.CreatePackage();
+
+    public override TResult Invoke<TResult>(string action, IDataPackage package)
+    {
+        var input = this.DataConverter.Serialize(package);
+        var result = this.Tunnel.Invoke(action, input);
+        if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
+        var output = result.Data;
+        return this.DataConverter.Deserialize<TResult>(output)!;
+    }
+
+    public override void Invoke(string action, IDataPackage package)
+    {
+        var input = this.DataConverter.Serialize(package);
+        var result = this.Tunnel.Invoke(action, input);
+        if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
+    }
 
     public override async Task InvokeAsync(String action, IDataPackage package)
     {

@@ -45,4 +45,9 @@ public abstract class HttpJsonRpcTunnel : IRpcTunnel<string>
             };
         }
     }
+
+    public RpcResult<string> Invoke(string action, string data)
+    {
+        return InvokeAsync(action, data).GetAwaiter().GetResult();
+    }
 }

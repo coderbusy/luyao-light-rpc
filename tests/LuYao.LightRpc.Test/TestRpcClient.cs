@@ -11,4 +11,7 @@ public partial class TestRpcClient<T> : RpcClient<T>
 
     [RemoteAction("Test/Sum")]
     public partial Task<int> Sum(int a, int b);
+
+    [RemoteAction("Test/Sum")]
+    public partial int Test1(int a, int b);
 }

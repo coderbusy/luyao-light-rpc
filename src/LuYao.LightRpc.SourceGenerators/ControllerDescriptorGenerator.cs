@@ -101,11 +101,8 @@ public class ControllerDescriptorGenerator : IIncrementalGenerator
                 // 判断返回类型是否是 Task 或 Task<>
                 bool returnsTask = returnType.Name == "Task" && (returnType.ContainingNamespace.ToString() == "System.Threading.Tasks");
 
-                // 判断返回类型是否实现了 GetAwaiter 方法
-                bool implementsGetAwaiter = returnType.GetMembers("GetAwaiter").OfType<IMethodSymbol>().Any(m => m.Parameters.Length == 0);
-
                 // 这个方法是否可以被 await
-                action.IsAwaitable = returnsTask || implementsGetAwaiter;
+                action.IsAwaitable = returnsTask;
 
                 if (action.IsAwaitable)
                 {

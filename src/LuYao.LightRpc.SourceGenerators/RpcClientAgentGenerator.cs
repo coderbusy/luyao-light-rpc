@@ -113,6 +113,10 @@ public class RpcClientAgentGenerator : IIncrementalGenerator
                 action.ReturnType = returnType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
                 // 判断返回类型是否是 Task 或 Task<>
                 bool returnsTask = returnType.Name == "Task" && (returnType.ContainingNamespace.ToString() == "System.Threading.Tasks");
+
+                action.ReturnDataType = action.ReturnType;
+                // 这个方法是否可以被 await
+                action.IsAwaitable = returnsTask;
                 if (returnsTask)
                 {
                     if (returnType is INamedTypeSymbol named && named.TypeArguments.Any())
@@ -120,11 +124,6 @@ public class RpcClientAgentGenerator : IIncrementalGenerator
                         action.ReturnDataType = named.TypeArguments[0].ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
                     }
                 }
-                // 判断返回类型是否实现了 GetAwaiter 方法
-                bool implementsGetAwaiter = returnType.GetMembers("GetAwaiter").OfType<IMethodSymbol>().Any(m => m.Parameters.Length == 0);
-
-                // 这个方法是否可以被 await
-                action.IsAwaitable = returnsTask || implementsGetAwaiter;
 
                 if (action.IsAwaitable)
                 {

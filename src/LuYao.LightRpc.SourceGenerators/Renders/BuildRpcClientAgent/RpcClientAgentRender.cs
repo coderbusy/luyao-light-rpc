@@ -57,7 +57,7 @@ public class RpcClientAgentRender
     {
         foreach (var action in this.Client.Actions)
         {
-            sb.AppendLine($"{action.Accessibility} partial async {action.ReturnType} {action.Name}({BuildArgs(action)})");
+            sb.AppendLine($"{action.Accessibility} partial {(action.IsAwaitable ? "async " : "")}{action.ReturnType} {action.Name}({BuildArgs(action)})");
             sb.AppendLine("{");
             using (sb.Tab())
             {
@@ -68,12 +68,27 @@ public class RpcClientAgentRender
                 }
                 if (action.HasReturnValue)
                 {
-                    sb.AppendLine($"var result = await this.InvokeAsync<{action.ReturnDataType}>(\"{action.Command}\", _pkg_);");
-                    sb.AppendLine("return result;");
+                    if (action.IsAwaitable)
+                    {
+                        sb.AppendLine($"var result = await this.InvokeAsync<{action.ReturnDataType}>(\"{action.Command}\", _pkg_);");
+                        sb.AppendLine("return result;");
+                    }
+                    else
+                    {
+                        sb.AppendLine($"var result = this.Invoke<{action.ReturnDataType}>(\"{action.Command}\", _pkg_);");
+                        sb.AppendLine("return result;");
+                    }
                 }
                 else
                 {
-                    sb.AppendLine($"await this.InvokeAsync(\"{action.Command}\", _pkg_);");
+                    if (action.IsAwaitable)
+                    {
+                        sb.AppendLine($"await this.InvokeAsync(\"{action.Command}\", _pkg_);");
+                    }
+                    else
+                    {
+                        sb.AppendLine($"this.Invoke(\"{action.Command}\", _pkg_);");
+                    }
                 }
             }
             sb.AppendLine("}");
