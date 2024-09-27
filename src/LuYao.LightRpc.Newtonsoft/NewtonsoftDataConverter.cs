@@ -7,20 +7,6 @@ namespace LuYao.LightRpc;
 
 public class NewtonsoftDataConverter : IDataConverter<String>
 {
-    public T ConvertTo<T>(object data)
-    {
-        if (data is T t) return t;
-        if (data is JToken token) return token.Value<T>()!;
-        return (T)Convert.ChangeType(data, typeof(T));
-    }
-
-    public IDictionary<string, object> Parse(string data)
-    {
-        var dict = new SortedDictionary<string, object>(StringComparer.OrdinalIgnoreCase);
-        if (!string.IsNullOrWhiteSpace(data)) JsonConvert.PopulateObject(data, dict);
-        return dict;
-    }
-
     public TResult Deserialize<TResult>(string? data)
     {
         return JsonConvert.DeserializeObject<TResult>(data ?? string.Empty);
@@ -31,10 +17,10 @@ public class NewtonsoftDataConverter : IDataConverter<String>
         return JsonConvert.SerializeObject(data);
     }
 
-    public IDataPackage CreatePackage(string data)
+    public IReadOnlyDataPackage CreatePackage(string data)
     {
         if (string.IsNullOrWhiteSpace(data)) return EmptyDataPackage.Instance;
         var job = JObject.Parse(data);
-        return new JTokenDataPackage(job);
+        return new JTokenReadOnlyDataPackage(job);
     }
 }

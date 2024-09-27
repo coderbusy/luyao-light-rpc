@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace LuYao.LightRpc;
 
 public class InvokeContext
 {
-    public IDataPackage Params { get; }
+    public IReadOnlyDataPackage Params { get; }
 
-    public InvokeContext(IDataPackage @params)
+    public InvokeContext(IReadOnlyDataPackage @params)
     {
         Params = @params;
     }

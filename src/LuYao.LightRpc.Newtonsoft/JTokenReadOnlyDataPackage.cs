@@ -2,11 +2,11 @@
 
 namespace LuYao.LightRpc;
 
-internal class JTokenDataPackage : IDataPackage
+internal class JTokenReadOnlyDataPackage : IReadOnlyDataPackage
 {
     public JObject JObject { get; }
 
-    public JTokenDataPackage(JObject jObject)
+    public JTokenReadOnlyDataPackage(JObject jObject)
     {
         JObject = jObject;
     }

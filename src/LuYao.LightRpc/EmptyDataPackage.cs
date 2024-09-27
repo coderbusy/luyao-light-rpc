@@ -1,6 +1,6 @@
 ﻿namespace LuYao.LightRpc;
 
-public class EmptyDataPackage : IDataPackage
+public class EmptyDataPackage : IReadOnlyDataPackage
 {
     public static EmptyDataPackage Instance { get; } = new EmptyDataPackage();
     private EmptyDataPackage() { }

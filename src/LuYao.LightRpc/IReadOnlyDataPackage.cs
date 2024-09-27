@@ -1,6 +1,6 @@
 ﻿namespace LuYao.LightRpc;
 
-public interface IDataPackage
+public interface IReadOnlyDataPackage
 {
     bool TryGetValue<T>(string key, out T? value);
 }
