@@ -4,9 +4,9 @@ namespace LuYao.LightRpc;
 
 public class InvokeContext
 {
-    public IReadOnlyDataPackage Params { get; }
+    public IInvokeParameters Params { get; }
 
-    public InvokeContext(IReadOnlyDataPackage @params)
+    public InvokeContext(IInvokeParameters @params)
     {
         Params = @params;
     }

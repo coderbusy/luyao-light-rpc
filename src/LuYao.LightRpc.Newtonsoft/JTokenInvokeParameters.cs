@@ -2,11 +2,11 @@
 
 namespace LuYao.LightRpc;
 
-internal class JTokenReadOnlyDataPackage : IReadOnlyDataPackage
+internal class JTokenInvokeParameters : IInvokeParameters
 {
     public JObject JObject { get; }
 
-    public JTokenReadOnlyDataPackage(JObject jObject)
+    public JTokenInvokeParameters(JObject jObject)
     {
         JObject = jObject;
     }
