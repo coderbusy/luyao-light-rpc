@@ -17,10 +17,20 @@ public class NewtonsoftDataConverter : IDataConverter<String>
         return JsonConvert.SerializeObject(data);
     }
 
-    public IReadOnlyDataPackage CreatePackage(string data)
+    public IReadOnlyDataPackage ReadPackage(string data)
     {
         if (string.IsNullOrWhiteSpace(data)) return EmptyDataPackage.Instance;
         var job = JObject.Parse(data);
         return new JTokenReadOnlyDataPackage(job);
+    }
+
+    public IDataPackage CreatePackage()
+    {
+        throw new NotImplementedException();
+    }
+
+    public string Serialize(IDataPackage data)
+    {
+        throw new NotImplementedException();
     }
 }
