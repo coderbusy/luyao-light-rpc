@@ -24,13 +24,7 @@ public class NewtonsoftDataConverter : IDataConverter<String>
         return new JTokenInvokeParameters(job);
     }
 
-    public IDataPackage CreatePackage()
-    {
-        throw new NotImplementedException();
-    }
+    public IDataPackage CreatePackage() => new JObjectDataPackage();
 
-    public string Serialize(IDataPackage data)
-    {
-        throw new NotImplementedException();
-    }
+    public string Serialize(IDataPackage data) => JsonConvert.SerializeObject(data);
 }

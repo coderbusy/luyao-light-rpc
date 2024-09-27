@@ -15,7 +15,7 @@ public abstract class HttpJsonRpcTunnel : IRpcTunnel<string>
     public string Endpoint { get; }
     protected virtual string MatchEndpoint(String action) => this.Endpoint;
     protected abstract HttpClient CreateHttpClient();
-    public async Task<RpcResult<string>> InvokeAsync(string action, string data, IDataConverter<string> converter)
+    public async Task<RpcResult<string>> InvokeAsync(string action, string data)
     {
         var builder = new UriBuilder(this.MatchEndpoint(action));
         var nv = System.Web.HttpUtility.ParseQueryString(builder.Query);

@@ -3,7 +3,14 @@ using System.Threading.Tasks;
 
 namespace LuYao.LightRpc;
 
-public class RpcClient<TData>
+public abstract class RpcClient
+{
+    public abstract IDataPackage CreateDataPackage();
+    public abstract Task<TResult> InvokeAsync<TResult>(String action, IDataPackage package);
+    public abstract Task InvokeAsync(String action, IDataPackage package);
+}
+
+public class RpcClient<TData> : RpcClient
 {
     public RpcClient(IDataConverter<TData> dataConverter, IRpcTunnel<TData> tunnel)
     {
@@ -12,11 +19,21 @@ public class RpcClient<TData>
     }
     public IDataConverter<TData> DataConverter { get; }
     public IRpcTunnel<TData> Tunnel { get; }
-    public virtual async Task<TResult> InvokeAsync<TResult>(String action, Object? args = null)
+
+    public override IDataPackage CreateDataPackage() => this.DataConverter.CreatePackage();
+
+    public override async Task InvokeAsync(String action, IDataPackage package)
     {
-        var input = this.DataConverter.Serialize(args);
-        var result = await this.Tunnel.InvokeAsync(action, input, this.DataConverter);
-        if (result.Code != RpcResultCode.Ok) throw new RpcException((int)result.Code, result.Message!);
+        var input = this.DataConverter.Serialize(package);
+        var result = await this.Tunnel.InvokeAsync(action, input);
+        if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
+    }
+
+    public override async Task<TResult> InvokeAsync<TResult>(string action, IDataPackage package)
+    {
+        var input = this.DataConverter.Serialize(package);
+        var result = await this.Tunnel.InvokeAsync(action, input);
+        if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
         var output = result.Data;
         return this.DataConverter.Deserialize<TResult>(output)!;
     }

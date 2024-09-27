@@ -10,6 +10,10 @@ public class RpcException : Exception
     /// <summary>实例化远程调用异常</summary>
     /// <param name="code"></param>
     /// <param name="message"></param>
+    public RpcException(RpcResultCode code, String message) : base(message) => Code = (int)code;
+    /// <summary>实例化远程调用异常</summary>
+    /// <param name="code"></param>
+    /// <param name="message"></param>
     public RpcException(Int32 code, String message) : base(message) => Code = code;
 
     /// <summary>实例化远程调用异常</summary>

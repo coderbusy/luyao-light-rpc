@@ -4,5 +4,5 @@ namespace LuYao.LightRpc;
 
 public interface IRpcTunnel<TData> 
 {
-    Task<RpcResult<TData>> InvokeAsync(string action, TData data, IDataConverter<TData> converter);
+    Task<RpcResult<TData>> InvokeAsync(string action, TData data);
 }
