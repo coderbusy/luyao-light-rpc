@@ -50,7 +50,7 @@ public class RpcServer<TData>
             result.Code = RpcResultCode.NotFound;
             return result;
         }
-        var parameters = this.DataConverter.ReadParameters(input) ?? EmptyInvokeParameters.Instance;
+        var parameters = this.DataConverter.Deserialize(input) ?? EmptyDataPackage.Instance;
         var context = new InvokeContext(parameters);
         try
         {

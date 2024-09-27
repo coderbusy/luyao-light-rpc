@@ -29,8 +29,11 @@ public class RpcClient<TData> : RpcClient
         var input = this.DataConverter.Serialize(package);
         var result = this.Tunnel.Send(action, input);
         if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
-        var output = result.Data;
-        return this.DataConverter.Deserialize<TResult>(output)!;
+        var output = this.DataConverter.Deserialize(result.Data) ?? EmptyDataPackage.Instance;
+        TResult? ret = default;
+        //return this.DataConverter.Deserialize<TResult>(output)!;
+        if (output.TryGetValue<TResult>("", out var v_ret)) ret = v_ret!;
+        return ret;
     }
 
     public override void Invoke(string action, IDataPackage package)
@@ -52,7 +55,9 @@ public class RpcClient<TData> : RpcClient
         var input = this.DataConverter.Serialize(package);
         var result = await this.Tunnel.SendAsync(action, input);
         if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
-        var output = result.Data;
-        return this.DataConverter.Deserialize<TResult>(output)!;
+        var output = this.DataConverter.Deserialize(result.Data) ?? EmptyDataPackage.Instance;
+        TResult? ret = default(TResult);
+        if (output.TryGetValue<TResult>("", out var v_ret)) ret = v_ret!;
+        return ret;
     }
 }
