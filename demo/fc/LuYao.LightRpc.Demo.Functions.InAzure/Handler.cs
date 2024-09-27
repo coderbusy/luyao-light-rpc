@@ -31,8 +31,9 @@ public class Handler
             {
                 if (result.Data != null)
                 {
-                    var output = _mainServer.DataConverter.Serialize(result.Data);
-                    await response.WriteStringAsync(output);
+                    //var output = _mainServer.DataConverter.Serialize(result.Data);
+                    //await response.WriteStringAsync(output);
+                    throw new NotImplementedException();
                 }
             }
             else

@@ -9,10 +9,10 @@
   <ItemGroup>
 	  <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.23.0" />
 	  <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.2.0" />
-	  <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.17.4" />
+	  <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.18.0" />
 	  <PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.22.0" />
 	  <PackageReference Include="Microsoft.Azure.Functions.Worker.ApplicationInsights" Version="1.4.0" />
-	  <PackageReference Include="LuYao.LightRpc.Newtonsoft" Version="1.1.0" />
+	  <PackageReference Include="LuYao.LightRpc.Newtonsoft" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\LuYao.LightRpc.Demo\LuYao.LightRpc.Demo.csproj" />

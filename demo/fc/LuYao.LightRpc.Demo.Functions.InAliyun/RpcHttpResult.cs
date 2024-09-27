@@ -20,8 +20,9 @@ public class RpcHttpResult : IResult
             if (this.RpcResult.Data is not null)
             {
                 var server = httpContext.RequestServices.GetRequiredService<MainServer>();
-                var output = server.DataConverter.Serialize(this.RpcResult.Data);
-                await response.WriteAsync(output);
+                //var output = server.DataConverter.Serialize(this.RpcResult.Data);
+                //await response.WriteAsync(output);
+                throw new NotImplementedException();
             }
         }
         else
