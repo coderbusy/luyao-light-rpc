@@ -27,7 +27,7 @@ public class RpcClient<TData> : RpcClient
     public override TResult Invoke<TResult>(string action, IDataPackage package)
     {
         var input = this.DataConverter.Serialize(package);
-        var result = this.Tunnel.Invoke(action, input);
+        var result = this.Tunnel.Send(action, input);
         if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
         var output = result.Data;
         return this.DataConverter.Deserialize<TResult>(output)!;
@@ -36,21 +36,21 @@ public class RpcClient<TData> : RpcClient
     public override void Invoke(string action, IDataPackage package)
     {
         var input = this.DataConverter.Serialize(package);
-        var result = this.Tunnel.Invoke(action, input);
+        var result = this.Tunnel.Send(action, input);
         if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
     }
 
     public override async Task InvokeAsync(String action, IDataPackage package)
     {
         var input = this.DataConverter.Serialize(package);
-        var result = await this.Tunnel.InvokeAsync(action, input);
+        var result = await this.Tunnel.SendAsync(action, input);
         if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
     }
 
     public override async Task<TResult> InvokeAsync<TResult>(string action, IDataPackage package)
     {
         var input = this.DataConverter.Serialize(package);
-        var result = await this.Tunnel.InvokeAsync(action, input);
+        var result = await this.Tunnel.SendAsync(action, input);
         if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
         var output = result.Data;
         return this.DataConverter.Deserialize<TResult>(output)!;
