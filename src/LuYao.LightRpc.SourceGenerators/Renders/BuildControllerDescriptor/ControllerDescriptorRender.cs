@@ -81,15 +81,14 @@ public class ControllerDescriptorRender
                         if (action.Parameters.Count > 0)
                         {
                             //拷贝变量
-                            sb.AppendLine($"var converter = context.DataConverter;");
                             sb.AppendLine($"var dict = context.Params;");
                             //解析参数
                             foreach (var parameter in action.Parameters)
                             {
                                 sb.AppendLine($"{parameter.Type} _{parameter.Name} = default;");
-                                sb.AppendLine($"if (dict.TryGetValue(\"{parameter.Name}\", out var obj_{parameter.Name}))");
+                                sb.AppendLine($"if (dict.TryGetValue<{parameter.Type}>(\"{parameter.Name}\", out var v_{parameter.Name}))");
                                 sb.AppendLine("{");
-                                using (sb.Tab()) sb.AppendLine($"_{parameter.Name} = converter.ConvertTo<{parameter.Type}>(obj_{parameter.Name});");
+                                using (sb.Tab()) sb.AppendLine($"_{parameter.Name} = v_{parameter.Name};");
                                 sb.AppendLine("}");
                             }
                         }

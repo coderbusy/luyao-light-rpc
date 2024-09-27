@@ -30,4 +30,11 @@ public class NewtonsoftDataConverter : IDataConverter<String>
     {
         return JsonConvert.SerializeObject(data);
     }
+
+    public IDataPackage CreatePackage(string data)
+    {
+        if (string.IsNullOrWhiteSpace(data)) return EmptyDataPackage.Instance;
+        var job = JObject.Parse(data);
+        return new JTokenDataPackage(job);
+    }
 }

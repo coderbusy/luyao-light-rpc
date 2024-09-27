@@ -50,8 +50,8 @@ public class RpcServer<TData>
             result.Code = RpcResultCode.NotFound;
             return result;
         }
-        var parameters = this.DataConverter.Parse(input) ?? new SortedDictionary<string, object>();
-        var context = new InvokeContext(this.DataConverter, parameters);
+        var parameters = this.DataConverter.CreatePackage(input) ?? EmptyDataPackage.Instance;
+        var context = new InvokeContext(parameters);
         try
         {
             await service!.Descriptor.Invoke(service.Controller, context);
