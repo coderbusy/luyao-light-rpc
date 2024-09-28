@@ -1,3 +1,4 @@
+using LuYao.LightRpc;
 using LuYao.LightRpc.Demo;
 using LuYao.LightRpc.Demo.MinimalApi;
 using Microsoft.AspNetCore.Mvc;
@@ -16,13 +17,14 @@ app.Map("/", async (
     ) =>
 {
     if (action is null) action = string.Empty;
-    string data = string.Empty;
+    string json = string.Empty;
     var request = context.Request;
     using (var reader = new StreamReader(request.Body))
     {
-        data = await reader.ReadToEndAsync();
+        json = await reader.ReadToEndAsync();
     }
-    var result = await server.InvokeAsync(action, data);
+    var input = server.DataConverter.Deserialize(json) ?? EmptyDataPackage.Instance;
+    var result = await server.InvokeAsync(action, input);
     var ret = new RpcHttpResult(result);
     return ret;
 });

@@ -19,10 +19,11 @@ public class Handler
     public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
     {
         string action = req.Query["cmd"]?.ToString() ?? String.Empty;
-        string data = await req.ReadAsStringAsync() ?? string.Empty;
+        string json = await req.ReadAsStringAsync() ?? string.Empty;
         var response = req.CreateResponse();
         response.Headers.Add("Content-Type", "application/json");
-        var result = await _mainServer.InvokeAsync(action, data);
+        var input = this._mainServer.DataConverter.Deserialize(json) ?? EmptyDataPackage.Instance;
+        var result = await this._mainServer.InvokeAsync(action, input);
         response.StatusCode = System.Net.HttpStatusCode.OK;
         if (result != null)
         {
@@ -31,9 +32,8 @@ public class Handler
             {
                 if (result.Data != null)
                 {
-                    //var output = _mainServer.DataConverter.Serialize(result.Data);
-                    //await response.WriteStringAsync(output);
-                    throw new NotImplementedException();
+                    var output = _mainServer.DataConverter.Serialize(result.Data);
+                    await response.WriteStringAsync(output);
                 }
             }
             else
