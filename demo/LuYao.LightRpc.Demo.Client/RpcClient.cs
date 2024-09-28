@@ -1,9 +1,15 @@
-﻿namespace LuYao.LightRpc.Demo.Client;
+﻿using LuYao.LightRpc.Attributes;
 
-public class RpcClient : LuYao.LightRpc.RpcClient<String>
+namespace LuYao.LightRpc.Demo.Client;
+
+[RpcClientAgent]
+public partial class RpcClient : LuYao.LightRpc.RpcClient<String>
 {
     public RpcClient(string endpoint) : base(new LuYao.LightRpc.NewtonsoftDataConverter(), new RpcTunnel(endpoint))
     {
 
     }
+
+    [RemoteAction("test/sum")]
+    public partial Task<int> SumAsync(int a, int b);
 }

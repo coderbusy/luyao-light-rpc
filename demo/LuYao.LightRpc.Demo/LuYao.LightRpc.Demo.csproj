@@ -6,8 +6,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="LuYao.LightRpc" Version="1.1.0" />
-		<PackageReference Include="LuYao.LightRpc.SourceGenerators" Version="1.1.0" />
+		<PackageReference Include="LuYao.LightRpc" Version="1.2.0" />
+		<PackageReference Include="LuYao.LightRpc.SourceGenerators" Version="1.2.0" />
 	</ItemGroup>
 
 </Project>
