@@ -10,6 +10,6 @@
 		<ProjectReference Include="..\..\LuYao.LightRpc.Demo\LuYao.LightRpc.Demo.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="LuYao.LightRpc.Newtonsoft" Version="1.2.0" />
+		<PackageReference Include="LuYao.LightRpc.Newtonsoft" Version="1.2.1" />
 	</ItemGroup>
 </Project>

@@ -1,3 +1,4 @@
+using LuYao.LightRpc;
 using LuYao.LightRpc.Demo;
 using LuYao.LightRpc.Demo.Functions.InAliyun;
 using Microsoft.AspNetCore.Mvc;
@@ -26,8 +27,9 @@ app.Map("/", async (
     ) =>
 {
     if (action is null) action = string.Empty;
-    string data = body is not null ? body.ToString() : string.Empty;
-    var result = await server.InvokeAsync(action, data);
+    string json = body is not null ? body.ToString() : string.Empty;
+    var input = server.DataConverter.Deserialize(json) ?? EmptyDataPackage.Instance;
+    var result = await server.InvokeAsync(action, input);
     var ret = new RpcHttpResult(result);
     return ret;
 });
