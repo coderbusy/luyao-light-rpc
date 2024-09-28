@@ -2,8 +2,9 @@
 
 namespace LuYao.LightRpc;
 
-public interface IRpcTunnel<TData>
+public interface IRpcTunnel
 {
-    Task<RpcResult<TData>> SendAsync(string action, TData data);
-    RpcResult<TData> Send(string action, TData data);
+    IDataConverter DataConverter { get; }
+    Task<RpcResult> SendAsync(string action, IDataPackage data);
+    RpcResult Send(string action, IDataPackage data);
 }

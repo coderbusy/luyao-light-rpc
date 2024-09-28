@@ -2,11 +2,13 @@
 
 namespace LuYao.LightRpc;
 
-
-public interface IDataConverter<T>
+public interface IDataConverter
 {
-    TResult? Deserialize<TResult>(T? data);
-    IInvokeParameters ReadParameters(T data);
     IDataPackage CreatePackage();
+}
+
+public interface IDataConverter<T> : IDataConverter
+{
     T Serialize(IDataPackage data);
+    IDataPackage? Deserialize(T? data);
 }

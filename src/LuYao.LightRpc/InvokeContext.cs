@@ -4,17 +4,18 @@ namespace LuYao.LightRpc;
 
 public class InvokeContext
 {
-    public IInvokeParameters Params { get; }
+    public IDataPackage Params { get; }
+    public IDataPackage Response { get; }
 
-    public InvokeContext(IInvokeParameters @params)
+    public InvokeContext(IDataPackage @params, IDataPackage response)
     {
-        Params = @params;
+        this.Params = @params;
+        this.Response = response;
     }
 
-    public Object? Result { get; internal set; }
 
-    public void SetResult(Object result)
+    public void SetResult<T>(T result)
     {
-        this.Result = result;
+        this.Response.Set("data", result);
     }
 }

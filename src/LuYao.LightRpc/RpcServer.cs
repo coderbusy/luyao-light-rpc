@@ -38,24 +38,23 @@ public class RpcServer<TData>
         }
     }
 
-    public async Task<RpcResult> InvokeAsync(string action, TData input)
+    public async Task<RpcResult> InvokeAsync(string action, IDataPackage input)
     {
         if (action == null) throw new ArgumentNullException(nameof(action));
         var result = new RpcResult
         {
-            Code = RpcResultCode.Ok
+            Code = RpcResultCode.Ok,
+            Data = this.DataConverter.CreatePackage()
         };
         if (!this.TryFindService(action, out var service))
         {
             result.Code = RpcResultCode.NotFound;
             return result;
         }
-        var parameters = this.DataConverter.ReadParameters(input) ?? EmptyInvokeParameters.Instance;
-        var context = new InvokeContext(parameters);
+        var context = new InvokeContext(input, result.Data);
         try
         {
             await service!.Descriptor.Invoke(service.Controller, context);
-            result.Data = context.Result;
         }
         catch (Exception e)
         {

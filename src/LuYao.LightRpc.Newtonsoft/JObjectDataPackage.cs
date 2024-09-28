@@ -16,4 +16,15 @@ internal class JObjectDataPackage : SortedDictionary<string, JToken>, IDataPacka
             this[key] = JToken.FromObject(value);
         }
     }
+
+    public bool TryGetValue<T>(string key, out T? value)
+    {
+        if (this.TryGetValue(key, out var token))
+        {
+            value = token.ToObject<T>();
+            return true;
+        }
+        value = default;
+        return false;
+    }
 }

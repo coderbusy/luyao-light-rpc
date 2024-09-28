@@ -14,45 +14,44 @@ public abstract class RpcClient
 
 public class RpcClient<TData> : RpcClient
 {
-    public RpcClient(IDataConverter<TData> dataConverter, IRpcTunnel<TData> tunnel)
+    public RpcClient(IRpcTunnel tunnel)
     {
-        this.DataConverter = dataConverter ?? throw new ArgumentNullException(nameof(dataConverter));
         Tunnel = tunnel ?? throw new ArgumentNullException(nameof(tunnel));
     }
-    public IDataConverter<TData> DataConverter { get; }
-    public IRpcTunnel<TData> Tunnel { get; }
 
-    public override IDataPackage CreateDataPackage() => this.DataConverter.CreatePackage();
+    public IRpcTunnel Tunnel { get; }
+
+    public override IDataPackage CreateDataPackage() => this.Tunnel.DataConverter.CreatePackage();
 
     public override TResult Invoke<TResult>(string action, IDataPackage package)
     {
-        var input = this.DataConverter.Serialize(package);
-        var result = this.Tunnel.Send(action, input);
+        var result = this.Tunnel.Send(action, package);
         if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
-        var output = result.Data;
-        return this.DataConverter.Deserialize<TResult>(output)!;
+        var output = result.Data ?? EmptyDataPackage.Instance;
+        TResult data = default!;
+        if (output.TryGetValue<TResult>("data", out var v_ret)) data = v_ret!;
+        return data;
     }
 
     public override void Invoke(string action, IDataPackage package)
     {
-        var input = this.DataConverter.Serialize(package);
-        var result = this.Tunnel.Send(action, input);
+        var result = this.Tunnel.Send(action, package);
         if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
     }
 
     public override async Task InvokeAsync(String action, IDataPackage package)
     {
-        var input = this.DataConverter.Serialize(package);
-        var result = await this.Tunnel.SendAsync(action, input);
+        var result = await this.Tunnel.SendAsync(action, package);
         if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
     }
 
     public override async Task<TResult> InvokeAsync<TResult>(string action, IDataPackage package)
     {
-        var input = this.DataConverter.Serialize(package);
-        var result = await this.Tunnel.SendAsync(action, input);
+        var result = await this.Tunnel.SendAsync(action, package);
         if (result.Code != RpcResultCode.Ok) throw new RpcException(result.Code, result.Message!);
-        var output = result.Data;
-        return this.DataConverter.Deserialize<TResult>(output)!;
+        var output = result.Data ?? EmptyDataPackage.Instance;
+        TResult data = default!;
+        if (output.TryGetValue<TResult>("data", out var v_ret)) data = v_ret!;
+        return data;
     }
 }
