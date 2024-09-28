@@ -21,12 +21,12 @@ public abstract class HttpJsonRpcTunnel : IRpcTunnel
     protected virtual string MatchEndpoint(String action) => this.Endpoint;
     protected abstract HttpClient CreateHttpClient();
 
-    public RpcResult Send(string action, IDataPackage data)
+    public virtual RpcResult Send(string action, IDataPackage data)
     {
-        throw new NotImplementedException();
+        return this.SendAsync(action, data).GetAwaiter().GetResult();
     }
 
-    public async Task<RpcResult> SendAsync(string action, IDataPackage data)
+    public virtual async Task<RpcResult> SendAsync(string action, IDataPackage data)
     {
         var builder = new UriBuilder(this.MatchEndpoint(action));
         var nv = System.Web.HttpUtility.ParseQueryString(builder.Query);
