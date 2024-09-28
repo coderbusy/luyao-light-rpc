@@ -5,7 +5,7 @@ namespace LuYao.LightRpc.Test;
 [RpcClientAgent]
 public partial class TestRpcClient<T> : RpcClient<T>
 {
-    public TestRpcClient(IDataConverter<T> dataConverter, IRpcTunnel<T> tunnel) : base(dataConverter, tunnel)
+    public TestRpcClient(IDataConverter<T> dataConverter, IRpcTunnel tunnel) : base(dataConverter, tunnel)
     {
     }
 
