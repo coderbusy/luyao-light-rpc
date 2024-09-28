@@ -51,14 +51,10 @@ public class RpcServer<TData>
             result.Code = RpcResultCode.NotFound;
             return result;
         }
-        var context = new InvokeContext(input);
+        var context = new InvokeContext(input, result.Data);
         try
         {
             await service!.Descriptor.Invoke(service.Controller, context);
-            if (context.Result != null)
-            {
-                result.Data.Set("", context.Result);
-            }
         }
         catch (Exception e)
         {
