@@ -2,7 +2,7 @@
 
 public class RpcResult
 {
-    public RpcResultCode Code { get; internal set; }
-    public string? Message { get; internal set; }
-    public IDataPackage? Data { get; internal set; }
+    public RpcResultCode Code { get; set; }
+    public string? Message { get; set; }
+    public IDataPackage? Data { get; set; }
 }
