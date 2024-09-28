@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuYao.LightRpc.Newtonsoft",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuYao.LightRpc.SourceGenerators", "src\LuYao.LightRpc.SourceGenerators\LuYao.LightRpc.SourceGenerators.csproj", "{01643FC8-921C-4460-9E46-0BDAFCA420E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuYao.LightRpc.Test", "tests\LuYao.LightRpc.Test\LuYao.LightRpc.Test.csproj", "{F1D431B8-5DBA-45B3-9648-8B2B0CD01F63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuYao.LightRpc.Test", "tests\LuYao.LightRpc.Test\LuYao.LightRpc.Test.csproj", "{F1D431B8-5DBA-45B3-9648-8B2B0CD01F63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuYao.LightRpc.Test.MinimalApi", "tests\LuYao.LightRpc.Test.MinimalApi\LuYao.LightRpc.Test.MinimalApi.csproj", "{1AEC67DD-0562-4800-94CF-152CCF179F3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuYao.LightRpc.Test.Client", "tests\LuYao.LightRpc.Test.Client\LuYao.LightRpc.Test.Client.csproj", "{E4F2787B-B5F8-4339-9227-EE8FD6C4AF34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,14 @@ Global
 		{F1D431B8-5DBA-45B3-9648-8B2B0CD01F63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1D431B8-5DBA-45B3-9648-8B2B0CD01F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1D431B8-5DBA-45B3-9648-8B2B0CD01F63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AEC67DD-0562-4800-94CF-152CCF179F3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AEC67DD-0562-4800-94CF-152CCF179F3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AEC67DD-0562-4800-94CF-152CCF179F3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AEC67DD-0562-4800-94CF-152CCF179F3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F2787B-B5F8-4339-9227-EE8FD6C4AF34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F2787B-B5F8-4339-9227-EE8FD6C4AF34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F2787B-B5F8-4339-9227-EE8FD6C4AF34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F2787B-B5F8-4339-9227-EE8FD6C4AF34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
