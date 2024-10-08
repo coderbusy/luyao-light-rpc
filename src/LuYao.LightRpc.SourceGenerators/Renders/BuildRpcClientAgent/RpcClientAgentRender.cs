@@ -57,7 +57,7 @@ public class RpcClientAgentRender
     {
         foreach (var action in this.Client.Actions)
         {
-            sb.AppendLine($"{action.Accessibility} partial {(action.IsAwaitable ? "async " : "")}{action.ReturnType} {action.Name}({BuildArgs(action)})");
+            sb.AppendLine($"{action.Accessibility} partial {(action.IsAwaitable ? "async " : "")}{action.ReturnType} {action.Name}{BuildTypeArgs(action)}({BuildArgs(action)}){BuildTypeArgsConstraint(action)}");
             sb.AppendLine("{");
             using (sb.Tab())
             {
@@ -93,6 +93,40 @@ public class RpcClientAgentRender
             }
             sb.AppendLine("}");
         }
+    }
+
+    private object BuildTypeArgsConstraint(Models.BuildRpcClientAgent.ActionModel action)
+    {
+        if (action.IsGenericMethod == false) return string.Empty;
+        var sb = new StringBuilder();
+        var args = new List<string>();
+        foreach (var item in action.TypeParameters)
+        {
+            args.Clear();
+            if (!item.HasConstraint) continue;
+            if (item.ConstraintTypes.Any()) args.AddRange(item.ConstraintTypes);
+            if (item.HasReferenceTypeConstraint) args.Add("class");
+            if (item.HasConstructorConstraint) args.Add("new()");
+            if (item.HasUnmanagedTypeConstraint)
+            {
+                args.Add("unmanaged");
+            }
+            else if (item.HasValueTypeConstraint)
+            {
+                args.Add("struct");
+            }
+            if (args.Count > 0)
+            {
+                sb.AppendLine($" where {item.Name} : {string.Join(", ", args)}");
+            }
+        }
+        return sb.ToString();
+    }
+
+    private string BuildTypeArgs(Models.BuildRpcClientAgent.ActionModel action)
+    {
+        if (action.IsGenericMethod == false) return string.Empty;
+        return $"<{string.Join(",", action.TypeParameters.Select(p => p.Type))}>";
     }
 
     private object BuildArgs(Models.BuildRpcClientAgent.ActionModel action)

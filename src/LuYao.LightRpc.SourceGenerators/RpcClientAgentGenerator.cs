@@ -107,6 +107,26 @@ public class RpcClientAgentGenerator : IIncrementalGenerator
                     HasReturnValue = !methodSymbol.ReturnsVoid,
                     Accessibility = methodSymbol.DeclaredAccessibility.ToString().ToLower()
                 };
+                if (methodSymbol.IsGenericMethod)
+                {
+                    foreach (var t in methodSymbol.TypeParameters)
+                    {
+                        var mp = new ActionTypeParameterModel
+                        {
+                            Name = t.Name,
+                            Type = t.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat),
+                            HasReferenceTypeConstraint = t.HasReferenceTypeConstraint,
+                            HasValueTypeConstraint = t.HasValueTypeConstraint,
+                            HasConstructorConstraint = t.HasConstructorConstraint,
+                            HasUnmanagedTypeConstraint = t.HasUnmanagedTypeConstraint
+                        };
+                        action.TypeParameters.Add(mp);
+                        foreach (var type in t.ConstraintTypes)
+                        {
+                            mp.ConstraintTypes.Add(type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat));
+                        }
+                    }
+                }
                 model.Actions.Add(action);
                 // 获取方法的返回类型
                 var returnType = methodSymbol.ReturnType;
